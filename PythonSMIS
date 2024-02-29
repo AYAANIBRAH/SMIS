@@ -1,0 +1,57 @@
+class Student:
+    def __init__(self, name, roll_number, marks):
+        self.name = name
+        self.roll_number = roll_number
+        self.marks = marks
+
+class StudentManagementSystem:
+    def __init__(self):
+        self.students = []
+
+    def add_student(self, name, roll_number, marks):
+        student = Student(name, roll_number, marks)
+        self.students.append(student)
+        print(f"Student {name} added successfully.")
+
+    def display_students(self):
+        print("\nList of Students:")
+        for student in self.students:
+            print(f"Name: {student.name}, Roll Number: {student.roll_number}, Marks: {student.marks}")
+
+    def search_student(self, name):
+        for student in self.students:
+            if student.name.lower() == name.lower():
+                print(f"\nStudent Found - Name: {student.name}, Roll Number: {student.roll_number}, Marks: {student.marks}")
+                return
+        print(f"\nStudent with name {name} not found.")
+
+def main():
+    sms = StudentManagementSystem()
+
+    while True:
+        print("\nStudent Management System Menu:")
+        print("1. Add Student")
+        print("2. Display Students")
+        print("3. Search Student")
+        print("4. Quit")
+
+        choice = input("Enter your choice (1-4): ")
+
+        if choice == '1':
+            name = input("Enter student name: ")
+            roll_number = input("Enter roll number: ")
+            marks = input("Enter marks: ")
+            sms.add_student(name, roll_number, marks)
+        elif choice == '2':
+            sms.display_students()
+        elif choice == '3':
+            name = input("Enter student name to search: ")
+            sms.search_student(name)
+        elif choice == '4':
+            print("Exiting the Student Management System. Goodbye!")
+            break
+        else:
+            print("Invalid choice. Please enter a valid option.")
+
+if __name__ == "__main__":
+    main()
